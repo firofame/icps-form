@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useTable } from "react-table";
+
+import "./index.css";
 
 function getAge(dateString) {
   var today = new Date();
@@ -29,6 +32,123 @@ export default function App() {
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [tableData, setTableData] = useState([
+    {
+      course: "S.S.L.C",
+      institution: "",
+      regNo: "",
+      yearOfPass: "",
+      marks: "",
+      remarks: ""
+    },
+    {
+      course: "Pre-Degree/+2",
+      institution: "",
+      regNo: "",
+      yearOfPass: "",
+      marks: "",
+      remarks: ""
+    }
+  ]);
+
+  const EditableCell = cellInfo => {
+    const {
+      row,
+      column: { id },
+      cell: { value: initialValue }
+    } = cellInfo;
+    const [value, setValue] = useState(initialValue);
+    const onChange = e => {
+      setValue(e.target.value);
+    };
+    const onBlur = () => {
+      setTableData(
+        tableData.map((item, index) => {
+          if (row.index === index) {
+            return { ...item, [id]: value };
+          }
+          return item;
+        })
+      );
+    };
+    return <input value={value} onChange={onChange} onBlur={onBlur} />;
+  };
+
+  const columns = [
+    {
+      Header: "Course",
+      accessor: "course",
+      Cell: EditableCell
+    },
+    {
+      Header: "Institution/University",
+      accessor: "institution",
+      Cell: EditableCell
+    },
+    {
+      Header: "Reg.No",
+      accessor: "regNo",
+      Cell: EditableCell
+    },
+    {
+      Header: "Year Of Pass",
+      accessor: "yearOfPass",
+      Cell: EditableCell
+    },
+    {
+      Header: "% of Mark/Grade",
+      accessor: "marks",
+      Cell: EditableCell
+    },
+    {
+      Header: "Remarks",
+      accessor: "remarks",
+      Cell: EditableCell
+    }
+  ];
+
+  function Table({ columns, data }) {
+    // Use the state and functions returned from useTable to build your UI
+    const {
+      getTableProps,
+      getTableBodyProps,
+      headerGroups,
+      rows,
+      prepareRow
+    } = useTable({
+      columns,
+      data
+    });
+
+    // Render the UI for your table
+    return (
+      <table {...getTableProps()}>
+        <thead>
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row, i) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map(cell => {
+                  return (
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  }
 
   return (
     <div className="container mt-5 bg-light">
@@ -221,6 +341,7 @@ export default function App() {
       </div>
       <div className="mt-4">
         9. Qualification (Use Additional Sheets if needed):
+        <Table columns={columns} data={tableData} />
       </div>
     </div>
   );
