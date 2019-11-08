@@ -14,7 +14,32 @@ function getAge(dateString) {
   return age;
 }
 
+const tableColumns = [
+  { Header: "Category No", accessor: "categoryNo" },
+  { Header: "Application for", accessor: "applicationFor" },
+  { Header: "SCPS", accessor: "isScps" },
+  { Header: "SARA", accessor: "isSara" },
+  { Header: "DCPU", accessor: "dcpu" },
+  { Header: "JJ B/CWC", accessor: "jjb" },
+  { Header: "CH/OH/POS", accessor: "ch" },
+  { Header: "Name", accessor: "name" },
+  { Header: "Gender", accessor: "gender" },
+  { Header: "D.O.B", accessor: "dob" },
+  { Header: "Age", accessor: "age" },
+  { Header: "Father's Name", accessor: "father" },
+  { Header: "Phone", accessor: "phone" },
+  { Header: "Mobile", accessor: "mobile" },
+  { Header: "Email", accessor: "email" },
+  { Header: "Address", accessor: "address" },
+  { Header: "Experience", accessor: "experience" }
+];
+
 export default function App() {
+  const [tableData, setTableData] = useState(
+    JSON.parse(localStorage.getItem("tableData"))
+      ? JSON.parse(localStorage.getItem("tableData"))
+      : []
+  );
   const [categoryNo, setCategoryNo] = useState("");
   const [applicationFor, setApplicationFor] = useState("");
   const [isScps, setIsScps] = useState(false);
@@ -32,7 +57,8 @@ export default function App() {
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [tableData, setTableData] = useState([
+  const [experience, setexperience] = useState("");
+  const [qualificationsData, setqualificationsData] = useState([
     {
       course: "S.S.L.C",
       institution: "",
@@ -62,8 +88,8 @@ export default function App() {
       setValue(e.target.value);
     };
     const onBlur = () => {
-      setTableData(
-        tableData.map((item, index) => {
+      setqualificationsData(
+        qualificationsData.map((item, index) => {
           if (row.index === index) {
             return { ...item, [id]: value };
           }
@@ -341,8 +367,48 @@ export default function App() {
       </div>
       <div className="mt-4">
         9. Qualification (Use Additional Sheets if needed):
-        <Table columns={columns} data={tableData} />
+        <Table columns={columns} data={qualificationsData} />
       </div>
+      <div className="my-4">
+        10. Experience:
+        <input
+          className="ml-2"
+          value={experience}
+          onChange={e => setexperience(e.target.value)}
+        />
+      </div>
+      <button
+        onClick={() => {
+          const tempData = [
+            ...tableData,
+            {
+              categoryNo,
+              applicationFor,
+              isScps,
+              isSara,
+              dcpu,
+              jjb,
+              ch,
+              name,
+              gender,
+              dob,
+              age,
+              father,
+              residence,
+              phone,
+              mobile,
+              email,
+              address,
+              experience
+            }
+          ];
+          localStorage.setItem("tableData", JSON.stringify(tempData));
+          setTableData(tempData);
+        }}
+      >
+        Save
+      </button>
+      <Table columns={tableColumns} data={tableData} />
     </div>
   );
 }
