@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SelectBox({ label, value, onChange }) {
   return (
-    <div className="col text-center">
+    <div className="col text-center border">
       {label}
       <select
         value={value}

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function CheckBox({ label, checked, onChange }) {
   return (
-    <div className="col-1 text-center">
+    <div className="col text-center border">
       <input
         className="mr-1"
         type="checkbox"
