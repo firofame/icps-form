@@ -1,5 +1,5 @@
 export default function getAge(dateString) {
-  var today = new Date();
+  var today = new Date(2019, 9, 1);
   var birthDate = new Date(dateString);
   var age = today.getFullYear() - birthDate.getFullYear();
   var m = today.getMonth() - birthDate.getMonth();
