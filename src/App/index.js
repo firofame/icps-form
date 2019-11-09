@@ -8,6 +8,7 @@ import {
   qualificationsTableColumns
 } from "./constants/tables";
 import TextInput from "./components/TextInput";
+import SelectBox from "./components/SelectBox";
 
 export default function App() {
   const [tableData, setTableData] = useState(
@@ -84,75 +85,21 @@ export default function App() {
           onChange={e => setIsSara(e.target.checked)}
         />
         SARA
-        <div className="col text-center">
-          DCPU (Specify Dist)
-          <select
-            value={dcpu}
-            onChange={e => setDcpu(e.target.value)}
-            className="ml-2"
-          >
-            <option value="Alappuzha">Alappuzha</option>
-            <option value="Ernakulam">Ernakulam</option>
-            <option value="Idukki">Idukki</option>
-            <option value="Kannur">Kannur</option>
-            <option value="Kasaragod">Kasaragod</option>
-            <option value="Kollam">Kollam</option>
-            <option value="Kottayam">Kottayam</option>
-            <option value="Kozhikode">Kozhikode</option>
-            <option value="Malappuram">Malappuram</option>
-            <option value="Palakkad">Palakkad</option>
-            <option value="Pathanamthitta">Pathanamthitta</option>
-            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-            <option value="Thrissur">Thrissur</option>
-            <option value="Wayanad">Wayanad</option>
-          </select>
-        </div>
-        <div className="col text-center">
-          JJ B/CWC (Specify Dist)
-          <select
-            value={jjb}
-            onChange={e => setJjb(e.target.value)}
-            className="ml-2"
-          >
-            <option value="Alappuzha">Alappuzha</option>
-            <option value="Ernakulam">Ernakulam</option>
-            <option value="Idukki">Idukki</option>
-            <option value="Kannur">Kannur</option>
-            <option value="Kasaragod">Kasaragod</option>
-            <option value="Kollam">Kollam</option>
-            <option value="Kottayam">Kottayam</option>
-            <option value="Kozhikode">Kozhikode</option>
-            <option value="Malappuram">Malappuram</option>
-            <option value="Palakkad">Palakkad</option>
-            <option value="Pathanamthitta">Pathanamthitta</option>
-            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-            <option value="Thrissur">Thrissur</option>
-            <option value="Wayanad">Wayanad</option>
-          </select>
-        </div>
-        <div className="col text-center">
-          CH/OH/POS (Specify Dist)
-          <select
-            value={ch}
-            onChange={e => setCh(e.target.value)}
-            className="ml-2"
-          >
-            <option value="Alappuzha">Alappuzha</option>
-            <option value="Ernakulam">Ernakulam</option>
-            <option value="Idukki">Idukki</option>
-            <option value="Kannur">Kannur</option>
-            <option value="Kasaragod">Kasaragod</option>
-            <option value="Kollam">Kollam</option>
-            <option value="Kottayam">Kottayam</option>
-            <option value="Kozhikode">Kozhikode</option>
-            <option value="Malappuram">Malappuram</option>
-            <option value="Palakkad">Palakkad</option>
-            <option value="Pathanamthitta">Pathanamthitta</option>
-            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-            <option value="Thrissur">Thrissur</option>
-            <option value="Wayanad">Wayanad</option>
-          </select>
-        </div>
+        <SelectBox
+          label="DCPU (Specify Dist)"
+          value={dcpu}
+          onChange={setDcpu}
+        />
+        <SelectBox
+          label="JJ B/CWC (Specify Dist)"
+          value={jjb}
+          onChange={setJjb}
+        />
+        <SelectBox
+          label="CH/OH/POS (Specify Dist)"
+          value={ch}
+          onChange={setCh}
+        />
       </div>
       <TextInput
         longInput
