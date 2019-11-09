@@ -9,6 +9,7 @@ import {
 } from "./constants/tables";
 import TextInput from "./components/TextInput";
 import SelectBox from "./components/SelectBox";
+import CheckBox from "./components/CheckBox";
 
 export default function App() {
   const [tableData, setTableData] = useState(
@@ -71,20 +72,8 @@ export default function App() {
         onChange={setApplicationFor}
       />
       <div className="row mt-3 d-flex align-items-center">
-        <input
-          className="mr-1"
-          type="checkbox"
-          checked={isScps}
-          onChange={e => setIsScps(e.target.checked)}
-        />
-        SCPS
-        <input
-          className="mr-1 ml-3"
-          type="checkbox"
-          checked={isSara}
-          onChange={e => setIsSara(e.target.checked)}
-        />
-        SARA
+        <CheckBox label="SCPS" checked={isScps} onChange={setIsScps} />
+        <CheckBox label="SARA" checked={isSara} onChange={setIsSara} />
         <SelectBox
           label="DCPU (Specify Dist)"
           value={dcpu}
