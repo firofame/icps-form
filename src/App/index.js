@@ -231,6 +231,42 @@ export default function App() {
             ];
             localStorage.setItem("tableData", JSON.stringify(tempData));
             setTableData(tempData);
+            setCategoryNo("");
+            setApplicationFor("");
+            setIsScps(false);
+            setIsSara(false);
+            setDcpu("");
+            setJjb("");
+            setCh("");
+            setName("");
+            setGender("Male");
+            setDob("");
+            setAge(0);
+            setFather("");
+            setResidence("");
+            setPhone("");
+            setMobile("");
+            setEmail("");
+            setAddress("");
+            setexperience("");
+            setqualificationsData([
+              {
+                course: "S.S.L.C",
+                institution: "",
+                regNo: "",
+                yearOfPass: "",
+                marks: "",
+                remarks: ""
+              },
+              {
+                course: "Pre-Degree/+2",
+                institution: "",
+                regNo: "",
+                yearOfPass: "",
+                marks: "",
+                remarks: ""
+              }
+            ]);
           }}
         >
           Save
@@ -238,7 +274,7 @@ export default function App() {
       </div>
 
       <div className="container py-5">
-        <Table columns={finalTableColumns} data={tableData} />
+        <Table columns={finalTableColumns(setTableData)} data={tableData} />
       </div>
     </div>
   );
