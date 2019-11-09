@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import "./index.css";
 import Table from "./components/Table";
 import getAge from "./utils/getAge";
 import {
