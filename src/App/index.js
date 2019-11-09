@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Parser } from "json2csv";
 
 import Table from "./components/Table";
 import getAge from "./utils/getAge";
@@ -274,6 +275,51 @@ export default function App() {
       </div>
 
       <div className="container py-5">
+        <button
+          className="btn btn-info"
+          onClick={() => {
+            const json2csvParser = new Parser();
+            const newData = tableData.map(
+              ({ qualificationsData, ...items }) => {
+                let newItems = { ...items };
+                qualificationsData.forEach((element, index) => {
+                  newItems = {
+                    ...newItems,
+                    ...Object.assign(
+                      {},
+                      ...Object.keys(element).map(key => ({
+                        [`${key} ${index + 1}`]: element[key]
+                      }))
+                    )
+                  };
+                });
+                return newItems;
+              }
+            );
+            const csv = json2csvParser.parse(newData);
+            const exportedFilenmae = new Date() + ".csv";
+            var blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+            if (navigator.msSaveBlob) {
+              // IE 10+
+              navigator.msSaveBlob(blob, exportedFilenmae);
+            } else {
+              var link = document.createElement("a");
+              if (link.download !== undefined) {
+                // feature detection
+                // Browsers that support HTML5 download attribute
+                var url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", exportedFilenmae);
+                link.style.visibility = "hidden";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }
+            }
+          }}
+        >
+          Download
+        </button>
         <Table columns={finalTableColumns(setTableData)} data={tableData} />
       </div>
     </div>
