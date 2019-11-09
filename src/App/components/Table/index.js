@@ -21,7 +21,9 @@ export default function Table({ columns, data }) {
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th {...column.getHeaderProps()} className="border p-1">
+                {column.render("Header")}
+              </th>
             ))}
           </tr>
         ))}
@@ -32,7 +34,11 @@ export default function Table({ columns, data }) {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                return (
+                  <td {...cell.getCellProps()} className="border p-1">
+                    {cell.render("Cell")}
+                  </td>
+                );
               })}
             </tr>
           );
