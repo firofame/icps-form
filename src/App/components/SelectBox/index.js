@@ -9,6 +9,7 @@ export default function SelectBox({ label, value, onChange }) {
         onChange={e => onChange(e.target.value)}
         className="ml-2"
       >
+        <option value="Select">Select</option>
         <option value="Alappuzha">Alappuzha</option>
         <option value="Ernakulam">Ernakulam</option>
         <option value="Idukki">Idukki</option>

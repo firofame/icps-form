@@ -20,9 +20,9 @@ export default function App() {
   const [applicationFor, setApplicationFor] = useState("");
   const [isScps, setIsScps] = useState(false);
   const [isSara, setIsSara] = useState(false);
-  const [dcpu, setDcpu] = useState("Alappuzha");
-  const [jjb, setJjb] = useState("Alappuzha");
-  const [ch, setCh] = useState("Alappuzha");
+  const [dcpu, setDcpu] = useState("");
+  const [jjb, setJjb] = useState("");
+  const [ch, setCh] = useState("");
   const [name, setName] = useState("");
   const [gender, setGender] = useState("Male");
   const [dob, setDob] = useState("");
