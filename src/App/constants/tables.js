@@ -3,7 +3,26 @@ import React from "react";
 import EditableCell from "../components/EditableCell";
 import Table from "../components/Table";
 
-export const finalTableColumns = [
+export const finalTableColumns = setTableData => [
+  {
+    accessor: "delete",
+    Cell: ({ data, row: { index } }) => {
+      return (
+        <button
+          onClick={() => {
+            const newArray = data.filter((item, i) => {
+              return i !== index;
+            });
+            setTableData(newArray);
+            localStorage.setItem("tableData", JSON.stringify(newArray));
+          }}
+          className="btn btn-danger"
+        >
+          Delete
+        </button>
+      );
+    }
+  },
   { Header: "Category No", accessor: "categoryNo" },
   { Header: "Application for", accessor: "applicationFor" },
   { Header: "SCPS", accessor: "isScps" },
@@ -16,6 +35,7 @@ export const finalTableColumns = [
   { Header: "D.O.B", accessor: "dob" },
   { Header: "Age", accessor: "age" },
   { Header: "Father's Name", accessor: "father" },
+  { Header: "Residence", accessor: "residence" },
   { Header: "Phone", accessor: "phone" },
   { Header: "Mobile", accessor: "mobile" },
   { Header: "Email", accessor: "email" },
