@@ -1,38 +1,13 @@
 import React, { useState } from "react";
-import { useTable } from "react-table";
 
 import "./index.css";
-
-function getAge(dateString) {
-  var today = new Date();
-  var birthDate = new Date(dateString);
-  var age = today.getFullYear() - birthDate.getFullYear();
-  var m = today.getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
-  return age;
-}
-
-const tableColumns = [
-  { Header: "Category No", accessor: "categoryNo" },
-  { Header: "Application for", accessor: "applicationFor" },
-  { Header: "SCPS", accessor: "isScps" },
-  { Header: "SARA", accessor: "isSara" },
-  { Header: "DCPU", accessor: "dcpu" },
-  { Header: "JJ B/CWC", accessor: "jjb" },
-  { Header: "CH/OH/POS", accessor: "ch" },
-  { Header: "Name", accessor: "name" },
-  { Header: "Gender", accessor: "gender" },
-  { Header: "D.O.B", accessor: "dob" },
-  { Header: "Age", accessor: "age" },
-  { Header: "Father's Name", accessor: "father" },
-  { Header: "Phone", accessor: "phone" },
-  { Header: "Mobile", accessor: "mobile" },
-  { Header: "Email", accessor: "email" },
-  { Header: "Address", accessor: "address" },
-  { Header: "Experience", accessor: "experience" }
-];
+import Table from "./components/Table";
+import getAge from "./utils/getAge";
+import {
+  finalTableColumns,
+  qualificationsTableColumns
+} from "./constants/tables";
+import TextInput from "./components/TextInput";
 
 export default function App() {
   const [tableData, setTableData] = useState(
@@ -77,125 +52,23 @@ export default function App() {
     }
   ]);
 
-  const EditableCell = cellInfo => {
-    const {
-      row,
-      column: { id },
-      cell: { value: initialValue }
-    } = cellInfo;
-    const [value, setValue] = useState(initialValue);
-    const onChange = e => {
-      setValue(e.target.value);
-    };
-    const onBlur = () => {
-      setqualificationsData(
-        qualificationsData.map((item, index) => {
-          if (row.index === index) {
-            return { ...item, [id]: value };
-          }
-          return item;
-        })
-      );
-    };
-    return <input value={value} onChange={onChange} onBlur={onBlur} />;
-  };
-
-  const columns = [
-    {
-      Header: "Course",
-      accessor: "course",
-      Cell: EditableCell
-    },
-    {
-      Header: "Institution/University",
-      accessor: "institution",
-      Cell: EditableCell
-    },
-    {
-      Header: "Reg.No",
-      accessor: "regNo",
-      Cell: EditableCell
-    },
-    {
-      Header: "Year Of Pass",
-      accessor: "yearOfPass",
-      Cell: EditableCell
-    },
-    {
-      Header: "% of Mark/Grade",
-      accessor: "marks",
-      Cell: EditableCell
-    },
-    {
-      Header: "Remarks",
-      accessor: "remarks",
-      Cell: EditableCell
-    }
-  ];
-
-  function Table({ columns, data }) {
-    // Use the state and functions returned from useTable to build your UI
-    const {
-      getTableProps,
-      getTableBodyProps,
-      headerGroups,
-      rows,
-      prepareRow
-    } = useTable({
-      columns,
-      data
-    });
-
-    // Render the UI for your table
-    return (
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => {
-                  return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    );
-  }
-
   return (
     <div className="container mt-5 bg-light">
-      Category No:
-      <input
-        className="ml-2"
+      <TextInput
+        label={`Category No`}
         value={categoryNo}
-        onChange={e => setCategoryNo(e.target.value)}
+        onChange={setCategoryNo}
       />
       <h4 className="text-center mt-3">
         Women And Child Development Department Integrated Child Protection
         Scheme [ICPS]
       </h4>
-      <div className="mt-4">
-        Application for the Post of:
-        <input
-          className="ml-2 w-50"
-          value={applicationFor}
-          onChange={e => setApplicationFor(e.target.value)}
-        />
-      </div>
+      <TextInput
+        longInput
+        label={`Application for the Post of`}
+        value={applicationFor}
+        onChange={setApplicationFor}
+      />
       <div className="row mt-3 d-flex align-items-center">
         <input
           className="mr-1"
@@ -281,14 +154,13 @@ export default function App() {
           </select>
         </div>
       </div>
-      <div className="mt-4">
-        1. Name (Use Capital Letters Only):
-        <input
-          className="ml-2 w-50"
-          value={name}
-          onChange={e => setName(e.target.value.toUpperCase())}
-        />
-      </div>
+      <TextInput
+        longInput
+        toUpperCase
+        label={`1. Name (Use Capital Letters Only)`}
+        value={name}
+        onChange={setName}
+      />
       <div className="mt-4">
         2. Male/Female/TG (Specify):
         <select
@@ -314,14 +186,13 @@ export default function App() {
         />
         {`Age: ${age}`}
       </div>
-      <div className="mt-4">
-        4. Father's/Husband's Name:
-        <input
-          className="ml-2 w-50"
-          value={father}
-          onChange={e => setFather(e.target.value.toUpperCase())}
-        />
-      </div>
+      <TextInput
+        longInput
+        toUpperCase
+        label={`4. Father's/Husband's Name`}
+        value={father}
+        onChange={setFather}
+      />
       <div className="mt-4 d-flex align-items-center">
         5. Place of Residence (Proof to be attached):
         <textarea
@@ -367,7 +238,13 @@ export default function App() {
       </div>
       <div className="mt-4">
         9. Qualification (Use Additional Sheets if needed):
-        <Table columns={columns} data={qualificationsData} />
+        <Table
+          columns={qualificationsTableColumns(
+            qualificationsData,
+            setqualificationsData
+          )}
+          data={qualificationsData}
+        />
       </div>
       <div className="my-4">
         10. Experience:
@@ -408,7 +285,7 @@ export default function App() {
       >
         Save
       </button>
-      <Table columns={tableColumns} data={tableData} />
+      <Table columns={finalTableColumns} data={tableData} />
     </div>
   );
 }
