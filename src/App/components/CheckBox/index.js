@@ -2,14 +2,17 @@ import React from "react";
 
 export default function CheckBox({ label, checked, onChange }) {
   return (
-    <div className="col text-center border">
+    <div className="form-check form-group">
       <input
-        className="mr-1"
+        id={label}
+        class="form-check-input"
         type="checkbox"
         checked={checked}
         onChange={e => onChange(e.target.checked)}
       />
-      {label}
+      <label className="form-check-label" for={label}>
+        {label}
+      </label>
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function App() {
   const [jjb, setJjb] = useState("");
   const [ch, setCh] = useState("");
   const [name, setName] = useState("");
-  const [gender, setGender] = useState("Male");
+  const [gender, setGender] = useState("");
   const [dob, setDob] = useState("");
   const [age, setAge] = useState(0);
   const [father, setFather] = useState("");
@@ -57,40 +57,38 @@ export default function App() {
   return (
     <div className="bg-light">
       <div className="container p-3">
+        <h3>
+          Women And Child Development Department Integrated Child Protection
+          Scheme [ICPS]
+        </h3>
         <TextInput
           label={`Category No`}
           value={categoryNo}
           onChange={setCategoryNo}
         />
-        <h4 className="text-center mt-3">
-          Women And Child Development Department Integrated Child Protection
-          Scheme [ICPS]
-        </h4>
         <TextInput
           longInput
           label={`Application for the Post of`}
           value={applicationFor}
           onChange={setApplicationFor}
         />
-        <div className="row mt-3 d-flex align-items-center">
-          <CheckBox label="SCPS" checked={isScps} onChange={setIsScps} />
-          <CheckBox label="SARA" checked={isSara} onChange={setIsSara} />
-          <SelectBox
-            label="DCPU (Specify Dist)"
-            value={dcpu}
-            onChange={setDcpu}
-          />
-          <SelectBox
-            label="JJ B/CWC (Specify Dist)"
-            value={jjb}
-            onChange={setJjb}
-          />
-          <SelectBox
-            label="CH/OH/POS (Specify Dist)"
-            value={ch}
-            onChange={setCh}
-          />
-        </div>
+        <CheckBox label="SCPS" checked={isScps} onChange={setIsScps} />
+        <CheckBox label="SARA" checked={isSara} onChange={setIsSara} />
+        <SelectBox
+          label="DCPU (Specify Dist)"
+          value={dcpu}
+          onChange={setDcpu}
+        />
+        <SelectBox
+          label="JJ B/CWC (Specify Dist)"
+          value={jjb}
+          onChange={setJjb}
+        />
+        <SelectBox
+          label="CH/OH/POS (Specify Dist)"
+          value={ch}
+          onChange={setCh}
+        />
         <TextInput
           longInput
           toUpperCase
@@ -98,30 +96,32 @@ export default function App() {
           value={name}
           onChange={setName}
         />
-        <div className="mt-4">
-          2. Male/Female/TG (Specify):
+        <div className="form-group">
+          <label for="gender">2. Male/Female/TG (Specify):</label>
           <select
+            id="gender"
+            className="custom-select"
             value={gender}
             onChange={e => setGender(e.target.value)}
-            className="ml-2"
           >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="TG">TG</option>
           </select>
         </div>
-        <div className="mt-4">
-          3. Age & Date of Birth:
+        <div className="form-group">
+          <label for="age">3. Age & Date of Birth:</label>
           <input
+            id="age"
             type="date"
-            className="mx-2"
+            className="form-control"
             value={dob}
             onChange={e => {
               setDob(e.target.value);
               setAge(getAge(e.target.value));
             }}
           />
-          {`Age: ${age}`}
+          <label for="age">{`Age: ${age}`}</label>
         </div>
         <TextInput
           longInput
@@ -130,29 +130,30 @@ export default function App() {
           value={father}
           onChange={setFather}
         />
-        <div className="mt-4 d-flex align-items-center">
-          5. Place of Residence (Proof to be attached):
+        <div className="form-group">
+          <label for="residence">
+            5. Place of Residence (Proof to be attached):
+          </label>
           <textarea
+            id="residence"
             rows="3"
-            className="ml-2 w-50"
+            className="form-control"
             value={residence}
             onChange={e => setResidence(e.target.value)}
           />
         </div>
-        <div className="d-flex align-items-center">
-          <TextInput
-            type="tel"
-            label={`6. Phone / Mobile No: 1`}
-            value={phone}
-            onChange={setPhone}
-          />
-          <TextInput
-            type="tel"
-            label={`2`}
-            value={mobile}
-            onChange={setMobile}
-          />
-        </div>
+        <TextInput
+          type="tel"
+          label={`6.a Phone / Mobile No`}
+          value={phone}
+          onChange={setPhone}
+        />
+        <TextInput
+          type="tel"
+          label={`6.b Phone / Mobile No`}
+          value={mobile}
+          onChange={setMobile}
+        />
         <TextInput
           longInput
           type="email"
@@ -160,18 +161,22 @@ export default function App() {
           value={email}
           onChange={setEmail}
         />
-        <div className="mt-4 d-flex align-items-center">
-          8. Permanent Address (With Pin code):
+        <div className="form-group">
+          <label for="address">8. Permanent Address (With Pin code):</label>
           <textarea
+            id="address"
             rows="3"
-            className="ml-2 w-50"
+            className="form-control"
             value={address}
             onChange={e => setAddress(e.target.value)}
           />
         </div>
-        <div className="mt-4">
-          9. Qualification (Use Additional Sheets if needed):
+        <div className="form-group">
+          <label for="qualification">
+            9. Qualification (Use Additional Sheets if needed):
+          </label>
           <Table
+            id="qualification"
             columns={qualificationsTableColumns(
               qualificationsData,
               setqualificationsData
@@ -204,7 +209,7 @@ export default function App() {
           onChange={setexperience}
         />
         <button
-          className="w-25 m-3 p-2 btn btn-primary"
+          className="w-100 btn btn-primary"
           onClick={() => {
             const tempData = [
               ...tableData,

@@ -2,12 +2,13 @@ import React from "react";
 
 export default function SelectBox({ label, value, onChange }) {
   return (
-    <div className="col text-center border">
-      {label}
+    <div className="form-group">
+      <label for={label}>{label}</label>
       <select
+        id={label}
         value={value}
         onChange={e => onChange(e.target.value)}
-        className="ml-2"
+        className="custom-select"
       >
         <option value="">Select District</option>
         <option value="Alappuzha">Alappuzha</option>

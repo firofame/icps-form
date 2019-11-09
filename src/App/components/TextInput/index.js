@@ -8,11 +8,12 @@ export default function TextInput({
   ...remainingProps
 }) {
   return (
-    <div className="mt-4">
-      {`${label}: `}
+    <div className="form-group">
+      <label for={label}>{`${label}: `}</label>
       <input
+        id={label}
         type="text"
-        className={`ml-2 mr-4 ${longInput ? `w-50` : ``}`}
+        className="form-control"
         onChange={({ target: { value } }) => {
           let finalValue = value;
           if (toUpperCase) {
