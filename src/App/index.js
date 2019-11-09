@@ -177,6 +177,24 @@ export default function App() {
             )}
             data={qualificationsData}
           />
+          <button
+            onClick={() => {
+              setqualificationsData([
+                ...qualificationsData,
+                {
+                  course: "",
+                  institution: "",
+                  regNo: "",
+                  yearOfPass: "",
+                  marks: "",
+                  remarks: ""
+                }
+              ]);
+            }}
+            className="btn btn-secondary"
+          >
+            + Add
+          </button>
         </div>
         <TextInput
           longInput
