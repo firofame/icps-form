@@ -202,31 +202,22 @@ export default function App() {
           onChange={e => setResidence(e.target.value)}
         />
       </div>
-      <div className="mt-4 d-flex align-items-center">
-        6. Phone / Mobile No: 1.
-        <input
+      <div className="d-flex align-items-center">
+        <TextInput
           type="tel"
-          className="ml-2 mr-5"
+          label={`6. Phone / Mobile No: 1`}
           value={phone}
-          onChange={e => setPhone(e.target.value)}
+          onChange={setPhone}
         />
-        2.
-        <input
-          type="tel"
-          className="ml-2"
-          value={mobile}
-          onChange={e => setMobile(e.target.value)}
-        />
+        <TextInput type="tel" label={`2`} value={mobile} onChange={setMobile} />
       </div>
-      <div className="mt-4">
-        7. e-mail Address:
-        <input
-          type="email"
-          className="ml-2 w-50"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-      </div>
+      <TextInput
+        longInput
+        type="email"
+        label={`7. e-mail Address`}
+        value={email}
+        onChange={setEmail}
+      />
       <div className="mt-4 d-flex align-items-center">
         8. Permanent Address (With Pin code):
         <textarea
@@ -246,15 +237,14 @@ export default function App() {
           data={qualificationsData}
         />
       </div>
-      <div className="my-4">
-        10. Experience:
-        <input
-          className="ml-2"
-          value={experience}
-          onChange={e => setexperience(e.target.value)}
-        />
-      </div>
+      <TextInput
+        longInput
+        label={`10. Experience`}
+        value={experience}
+        onChange={setexperience}
+      />
       <button
+        className="w-25 m-3 p-2"
         onClick={() => {
           const tempData = [
             ...tableData,

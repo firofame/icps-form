@@ -3,16 +3,16 @@ import React from "react";
 export default function TextInput({
   longInput,
   label,
-  value,
   onChange,
-  toUpperCase
+  toUpperCase,
+  ...remainingProps
 }) {
   return (
     <div className="mt-4">
       {`${label}: `}
       <input
-        className={`ml-2 ${longInput ? `w-50` : ``}`}
-        value={value}
+        type="text"
+        className={`ml-2 mr-4 ${longInput ? `w-50` : ``}`}
         onChange={({ target: { value } }) => {
           let finalValue = value;
           if (toUpperCase) {
@@ -20,6 +20,7 @@ export default function TextInput({
           }
           onChange(finalValue);
         }}
+        {...remainingProps}
       />
     </div>
   );
