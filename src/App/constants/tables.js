@@ -1,6 +1,7 @@
 import React from "react";
 
 import EditableCell from "../components/EditableCell";
+import Table from "../components/Table";
 
 export const finalTableColumns = [
   { Header: "Category No", accessor: "categoryNo" },
@@ -19,6 +20,28 @@ export const finalTableColumns = [
   { Header: "Mobile", accessor: "mobile" },
   { Header: "Email", accessor: "email" },
   { Header: "Address", accessor: "address" },
+  {
+    Header: "Qualifications Table",
+    accessor: "qualificationsData",
+    Cell: ({ cell: { value } }) => {
+      if (value) {
+        return (
+          <Table
+            columns={[
+              { Header: "Course", accessor: "course" },
+              { Header: "Institution/University", accessor: "institution" },
+              { Header: "Reg.No", accessor: "regNo" },
+              { Header: "Year Of Pass", accessor: "yearOfPass" },
+              { Header: "% of Mark/Grade", accessor: "marks" },
+              { Header: "Remarks", accessor: "remarks" }
+            ]}
+            data={value}
+          />
+        );
+      }
+      return null;
+    }
+  },
   { Header: "Experience", accessor: "experience" }
 ];
 

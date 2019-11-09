@@ -186,7 +186,7 @@ export default function App() {
           onChange={setexperience}
         />
         <button
-          className="w-25 m-3 p-2"
+          className="w-25 m-3 p-2 btn btn-primary"
           onClick={() => {
             const tempData = [
               ...tableData,
@@ -208,6 +208,7 @@ export default function App() {
                 mobile,
                 email,
                 address,
+                qualificationsData,
                 experience
               }
             ];
