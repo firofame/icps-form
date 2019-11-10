@@ -114,6 +114,7 @@ export default function App() {
           <input
             id="age"
             type="date"
+            max="2019-10-01"
             className="form-control"
             value={dob}
             onChange={e => {
