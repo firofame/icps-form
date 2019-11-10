@@ -1,5 +1,5 @@
 {
-  "name": "my-form",
+  "name": "ICPS-form",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -33,7 +33,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "http://firofame.github.io/my-form",
+  "homepage": "http://firofame.github.io/icps-form",
   "devDependencies": {
     "gh-pages": "^2.1.1"
   }
