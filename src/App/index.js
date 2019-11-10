@@ -104,6 +104,7 @@ export default function App() {
             value={gender}
             onChange={e => setGender(e.target.value)}
           >
+            <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="TG">TG</option>
@@ -246,7 +247,7 @@ export default function App() {
             setJjb("");
             setCh("");
             setName("");
-            setGender("Male");
+            setGender("");
             setDob("");
             setAge(0);
             setFather("");
