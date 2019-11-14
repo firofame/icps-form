@@ -17,7 +17,7 @@ export default function App() {
       ? JSON.parse(localStorage.getItem("tableData"))
       : []
   );
-  const [referenceNo, setReferenceNo] = useState('')
+  const [referenceNo, setReferenceNo] = useState("");
   const [categoryNo, setCategoryNo] = useState("");
   const [applicationFor, setApplicationFor] = useState("");
   const [isScps, setIsScps] = useState(false);
@@ -66,6 +66,11 @@ export default function App() {
           label={`Reference No`}
           value={referenceNo}
           onChange={setReferenceNo}
+        />
+        <TextInput
+          label={`Category No`}
+          value={categoryNo}
+          onChange={setCategoryNo}
         />
         <TextInput
           longInput
