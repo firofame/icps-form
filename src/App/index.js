@@ -72,12 +72,32 @@ export default function App() {
           value={categoryNo}
           onChange={setCategoryNo}
         />
-        <TextInput
-          longInput
-          label={`Application for the Post of`}
-          value={applicationFor}
-          onChange={setApplicationFor}
-        />
+        <div className="form-group">
+          <label for="gender">2. Male/Female/TG (Specify):</label>
+          <select
+            id="gender"
+            className="custom-select"
+            value={applicationFor}
+            onChange={e => setApplicationFor(e.target.value)}
+          >
+            <option value="">Select Application Post</option>
+            <option value="Programme Officer">Programme Officer</option>
+            <option value="Accountant Officer">Accountant Officer</option>
+            <option value="Assistant cum Data Entry Operator">
+              Assistant cum Data Entry Operator
+            </option>
+            <option value="Accountant">Accountant</option>
+            <option value="Programme Manager">Programme Manager</option>
+            <option value="Protection Officer">Protection Officer</option>
+            <option value="Legal cum Probation Officer">
+              Legal cum Probation Officer
+            </option>
+            <option value="Counsellor">Counsellor</option>
+            <option value="Social Worker">Social Worker</option>
+            <option value="Data Analyst">Data Analyst</option>
+            <option value="Outreach Worker">Outreach Worker</option>
+          </select>
+        </div>
         <CheckBox label="SCPS" checked={isScps} onChange={setIsScps} />
         <CheckBox label="SARA" checked={isSara} onChange={setIsSara} />
         <SelectBox
