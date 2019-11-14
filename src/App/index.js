@@ -73,7 +73,7 @@ export default function App() {
           onChange={setCategoryNo}
         />
         <div className="form-group">
-          <label for="gender">2. Male/Female/TG (Specify):</label>
+          <label for="gender">Application Post:</label>
           <select
             id="gender"
             className="custom-select"
