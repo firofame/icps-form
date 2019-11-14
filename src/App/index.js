@@ -17,6 +17,7 @@ export default function App() {
       ? JSON.parse(localStorage.getItem("tableData"))
       : []
   );
+  const [referenceNo, setReferenceNo] = useState('')
   const [categoryNo, setCategoryNo] = useState("");
   const [applicationFor, setApplicationFor] = useState("");
   const [isScps, setIsScps] = useState(false);
@@ -62,9 +63,9 @@ export default function App() {
           Scheme [ICPS]
         </h3>
         <TextInput
-          label={`Category No`}
-          value={categoryNo}
-          onChange={setCategoryNo}
+          label={`Reference No`}
+          value={referenceNo}
+          onChange={setReferenceNo}
         />
         <TextInput
           longInput
@@ -216,6 +217,7 @@ export default function App() {
             const tempData = [
               ...tableData,
               {
+                referenceNo,
                 categoryNo,
                 applicationFor,
                 isScps,
@@ -239,6 +241,7 @@ export default function App() {
             ];
             localStorage.setItem("tableData", JSON.stringify(tempData));
             setTableData(tempData);
+            setReferenceNo("");
             setCategoryNo("");
             setApplicationFor("");
             setIsScps(false);

@@ -23,6 +23,7 @@ export const finalTableColumns = setTableData => [
       );
     }
   },
+  { Header: "Reference No", accessor: "referenceNo" },
   { Header: "Category No", accessor: "categoryNo" },
   { Header: "Application for", accessor: "applicationFor" },
   { Header: "SCPS", accessor: "isScps" },
