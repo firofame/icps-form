@@ -140,8 +140,7 @@ export default function App() {
           <label for="age">3. Age & Date of Birth:</label>
           <input
             id="age"
-            type="date"
-            max="2019-10-01"
+            placeholder="DD-MM-YYYY"
             className="form-control"
             value={dob}
             onChange={e => {
